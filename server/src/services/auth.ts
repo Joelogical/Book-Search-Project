@@ -22,20 +22,13 @@ export const authenticateToken = (
 
     const secretKey = process.env.JWT_SECRET_KEY || "";
 
-    jwt.verify(
-      token,
-      secretKey,
-      (err: jwt.VerifyErrors | null, decoded: JwtPayload | undefined) => {
-        if (err) {
-          return res.sendStatus(403); // Forbidden
-        }
-
-        if (decoded) {
-          req.user = decoded;
-        }
-        return next();
-      }
-    );
+    try {
+      const decoded = jwt.verify(token, secretKey) as JwtPayload;
+      req.user = decoded;
+      return next();
+    } catch (err) {
+      return res.sendStatus(403); // Forbidden
+    }
   } else {
     res.sendStatus(401); // Unauthorized
   }
