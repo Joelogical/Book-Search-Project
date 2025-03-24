@@ -8,7 +8,27 @@
 
     /* Emit */
     "outDir": "dist" /* Specify an output folder for all emitted files. */,
-    "noEmitOnError": true /* Disable emitting files if any type checking errors are reported. */
+    "noEmitOnError": true /* Disable emitting files if any type checking errors are reported. */,
+
+    /* Type Checking */
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "useUnknownInCatchVariables": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "allowUnusedLabels": false,
+    "allowUnreachableCode": false
   },
   "include": ["src"],
   "typeRoots": ["./node_modules/@types", "./src/types"]

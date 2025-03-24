@@ -14,7 +14,7 @@ interface JwtPayload {
 declare global {
   namespace Express {
     interface Request {
-      user?: JwtPayload;
+      user: JwtPayload;
     }
   }
 }
@@ -34,13 +34,13 @@ export const authenticateToken = (
     jwt.verify(
       token,
       secretKey,
-      (err: jwt.VerifyErrors | null, user: JwtPayload | undefined) => {
+      (err: jwt.VerifyErrors | null, decoded: JwtPayload | undefined) => {
         if (err) {
           return res.sendStatus(403); // Forbidden
         }
 
-        if (user) {
-          req.user = user;
+        if (decoded) {
+          req.user = decoded;
         }
         return next();
       }
