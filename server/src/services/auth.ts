@@ -10,15 +10,6 @@ interface JwtPayload {
   email: string;
 }
 
-// Extend Express Request type to include user
-declare global {
-  namespace Express {
-    interface Request {
-      user: JwtPayload;
-    }
-  }
-}
-
 export const authenticateToken = (
   req: Request,
   res: Response,
