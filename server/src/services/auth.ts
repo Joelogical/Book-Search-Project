@@ -10,12 +10,17 @@ interface JwtPayload {
   email: string;
 }
 
-interface RequestWithUser extends Request {
-  user?: JwtPayload;
+// Extend Express Request type to include user
+declare global {
+  namespace Express {
+    interface Request {
+      user?: JwtPayload;
+    }
+  }
 }
 
 export const authenticateToken = (
-  req: RequestWithUser,
+  req: Request,
   res: Response,
   next: NextFunction
 ) => {
@@ -34,7 +39,9 @@ export const authenticateToken = (
           return res.sendStatus(403); // Forbidden
         }
 
-        req.user = user;
+        if (user) {
+          req.user = user;
+        }
         return next();
       }
     );
